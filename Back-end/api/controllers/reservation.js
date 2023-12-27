@@ -21,8 +21,12 @@ export const createReservation = async (req, res, next)=>{
         try {
             const dates = req.body.dates.map(date => new Date(date));
             await Room.findOneAndUpdate(
-                { "roomNumbers._id": req.params.id },
-                { $push: { "roomNumbers.$.unavailableDates": { $each: dates } } }
+                {
+                  "roomNumbers._id": req.params.id,
+                },
+                {
+                  $push: { "roomNumbers.$.unavailableDates": { $each: dates } }
+                }
             );
 
         } catch (err) {

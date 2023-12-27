@@ -13,8 +13,7 @@ export const createHotel = async (req, res, next)=>{
 
 export const updateHotel = async (req, res, next)=>{
     try {
-        const updatedHotel = await Hotel.findByIdAndUpdate(
-            req.params.id, { $set: req.body }, { new: true })
+        const updatedHotel = await Hotel.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true })
         res.status(200).json(updatedHotel)
     } catch(err) {
         next(err)
@@ -101,11 +100,11 @@ export const getHotelByRoomNumberId = async (req, res) => {
         const roomNumberId = req.params.roomNumberId;
         const room = await Room.findOne({ 'roomNumbers._id': roomNumberId });
         if (!room) {
-            return res.status(404).json({ message: "Room not found" });
+            return res.status(404).json({ message: 'Room not found with the given room number ID.' });
         }
         const hotel = await Hotel.findOne({ rooms: room.id });
         if (!hotel) {
-            return res.status(404).json({ message: "Hotel not found" });
+            return res.status(404).json({ message: 'Hotel not found for the given room.' });
         }
         res.status(200).json(hotel);
     } catch (err) {
