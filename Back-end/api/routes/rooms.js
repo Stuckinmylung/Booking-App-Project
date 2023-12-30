@@ -1,8 +1,8 @@
 import express from 'express'
 import { 
-    createRoom, deleteRoom, getRoom, getRooms, updateRoom, updateRoomAvailability } 
+    createRoom, deleteRoom, getRoom, getRoomByRoomNumberId, getRooms, updateRoom, updateRoomAvailability } 
     from "../controllers/room.js"
-import { verifyAdmin } from "../utils/verifyToken.js"
+import { verifyAdmin, verifyUser } from "../utils/verifyToken.js"
 
 const router = express.Router()
 
@@ -18,6 +18,8 @@ router.delete('/:id', verifyAdmin, deleteRoom)
 
 //GET
 router.get('/:id', getRoom)
+// GET ROOM BY ROOMNUMBERID
+router.get('/find/:roomNumberId', verifyUser, getRoomByRoomNumberId)
 
 //GET ALL
 router.get('/', getRooms)

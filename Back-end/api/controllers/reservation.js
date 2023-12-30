@@ -44,7 +44,6 @@ export const deleteReservation = async (req, res, next)=>{
         const roomNumber = await Room.findOne({ 'roomNumbers._id': reservation.roomNumberId})
         try {
             const dates = reservation.dates.map(date => new Date(date))
-            console.log(dates)
             await Room.findOneAndUpdate(
                 { "roomNumbers._id": reservation.roomNumberId },
                 { $pull: { "roomNumbers.$.unavailableDates": { $in: dates } } }
@@ -59,17 +58,11 @@ export const deleteReservation = async (req, res, next)=>{
     }
 }
 
-export const updateReservation = async (req, res, next)=>{
+export const getReservationsByUserId = async (req, res, next)=>{
     try {
-        await Reservation.updateOne(
-            { "roomid": req.params.id },
-            {
-                $push: {
-                    "dates": req.body.dates,
-                    "hotelid": req.body.hotelId
-                },
-            })
-        res.status(200).json("reservation has been updated.")
+        const userId = req.params.userId
+        const reservation = await Reservation.findOne({'userId': userId})
+        res.status(200).json(reservation)
     } catch(err) {
         next(err)
     }

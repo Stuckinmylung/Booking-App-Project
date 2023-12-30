@@ -63,6 +63,16 @@ export const getRooms = async (req, res, next)=>{
     }
 }
 
+export const getRoomByRoomNumberId = async (req, res, next)=>{
+    try {
+        const roomNumberId = req.params.roomNumberId
+        const room = await Room.findOne({ 'roomNumbers._id': roomNumberId})
+        res.status(200).json(room)
+    } catch (err) {
+        next(err)
+    }
+}
+
 export const deleteRoom = async (req, res, next) => {
     const hotelId = req.params.hotelid;
     try {
