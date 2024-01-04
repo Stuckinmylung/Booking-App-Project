@@ -1,6 +1,6 @@
 import express from 'express'
 import { verifyAdmin, verifyUser } from "../utils/verifyToken.js"
-import { createReservation, deleteReservation, getReservations, getReservationsByUserId } from '../controllers/reservation.js'
+import { createReservation, deleteReservation, getReservations, getReservationsByUserId, updateReservationByRoomNumberId } from '../controllers/reservation.js'
 
 const router = express.Router()
 
@@ -10,7 +10,10 @@ router.get('/', verifyUser, getReservations)
 router.get('/:userId', verifyUser, getReservationsByUserId)
 
 //CREATE 
-router.post('/:id', verifyUser, createReservation)
+router.post('/:roomNumberId', verifyUser, createReservation)
+
+//PUT
+router.put('/:roomNumberId', verifyUser, updateReservationByRoomNumberId)
 
 //DELETE
 router.delete('/:id', verifyUser, deleteReservation)

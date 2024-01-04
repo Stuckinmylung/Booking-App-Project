@@ -63,11 +63,10 @@ export const getRooms = async (req, res, next)=>{
     }
 }
 
-export const getRoomByRoomNumberId = async (req, res, next)=>{
+export const getRoomByRoomNumberId = async (roomNumberId, res, next)=>{
     try {
-        const roomNumberId = req.params.roomNumberId
-        const room = await Room.findOne({ 'roomNumbers._id': roomNumberId})
-        res.status(200).json(room)
+        const room = await Room.findOne({ 'roomNumbers._id': roomNumberId })
+        return room;
     } catch (err) {
         next(err)
     }
@@ -81,9 +80,9 @@ export const deleteRoom = async (req, res, next) => {
             await Hotel.findByIdAndUpdate(hotelId, {
             $pull: { rooms: req.params.id },
         });
-    } catch (err) {
-        next(err);
-    }
+        } catch (err) {
+            next(err);
+        }
         res.status(200).json("Room has been deleted.");
     } catch (err) {
         next(err);
