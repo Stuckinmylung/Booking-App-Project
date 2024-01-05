@@ -58,9 +58,7 @@ export const createReservation = async (req, res, next)=>{
 
 export const updateReservationByRoomNumberId = async (req, res, next)=>{
     try {
-        console.log(req)
         const reservation = await Reservation.findOne({ 'roomNumberId': req.params.roomNumberId })
-        console.log('Here')
         const dates = reservation.dates.map(date => new Date(date))
         await Reservation.findOneAndUpdate(
                 { 'roomNumberId': req.params.roomNumberId }, 
