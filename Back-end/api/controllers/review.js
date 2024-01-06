@@ -1,10 +1,12 @@
 import Hotel from "../models/Review.js"
 import Review from "../models/Review.js"
 import { createError } from "../utils/error.js"
+import { jwtDecode } from "jwt-decode";
 
 export const createReview = async (req, res, next)=>{
     const newReview = new Review(req.body)
     newReview.hotelId = req.params.hotelId
+    newReview.userId = jwtDecode(req.cookies.access_token).id
     try {
         const savedReview = await newReview.save()
         res.status(200).json(savedReview)
