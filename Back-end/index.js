@@ -8,6 +8,7 @@ import roomsRoute from './api/routes/rooms.js'
 import reservationsRoute from './api/routes/reservations.js'
 import paymentsRoute from './api/routes/payments.js'
 import reviewsRoute from './api/routes/reviews.js'
+import attractionsRoute from './api/routes/attractions.js'
 import cookieParser from 'cookie-parser'
 const app = express()
 dotenv.config()
@@ -37,6 +38,7 @@ app.use('/api/rooms', roomsRoute);
 app.use('/api/reservations', reservationsRoute);
 app.use('/api/payments', paymentsRoute)
 app.use('/api/reviews', reviewsRoute)
+app.use('/api/attractions', attractionsRoute)
 
 app.use((err, req, res, next)=>{
     const errorStatus = err.status || 500
