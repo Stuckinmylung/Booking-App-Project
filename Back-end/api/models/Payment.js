@@ -6,6 +6,10 @@ const PaymentSchema = new mongoose.Schema({
         type:[Object],
         required: true
     },
+    amount: {
+        type: Number,
+        required: true
+    },
     isPaid:{
         type: Boolean,
         default: false

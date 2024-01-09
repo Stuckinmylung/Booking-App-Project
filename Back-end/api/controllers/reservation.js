@@ -14,24 +14,6 @@ export const getReservations = async (req, res, next)=>{
     }
 }
 
-export const getReservationsByUserId = async (req, res, next)=>{
-    try {
-        const userId = req.params.userId
-        const reservations = await Reservation.find({'userId': userId})
-        const getRoomInfo = async (roomNumberId)=>{
-            const roomInfo = await getRoomByRoomNumberId(roomNumberId, res, next)
-            if (roomInfo && typeof roomInfo === 'object'){
-                return roomInfo
-            }
-        }
-        const roomPromises = reservations.map(reservation => getRoomInfo(reservation.roomNumberId))
-        const rooms = await Promise.all(roomPromises)
-        res.status(200).json(rooms)
-    } catch(err) {
-        next(err)
-    }
-}
-
 export const createReservation = async (req, res, next)=>{
     const newReservation = new Reservation(req.body)
     newReservation.userId = jwtDecode(req.cookies.access_token).id;
@@ -77,10 +59,21 @@ export const updateReservationByRoomNumberId = async (req, res, next)=>{
         next(err)
     }
 }
+
+export const getReservationsByUserId = async (req, res, next) => {
+    const userId = req.params.userId;
+    try {
+      const reservations = await Reservation.find({ 'userId': userId });
+      res.status(200).json(reservations);
+    } catch (error) {
+      next(error);
+    }
+  };
+  
+
 export const deleteReservation = async (req, res, next)=>{
     try {
         const reservation = await Reservation.findById(req.params.id)
-        // const roomNumber = await Room.findOne({ 'roomNumbers._id': reservation.roomNumberId})
         try {
             const dates = reservation.dates.map(date => new Date(date))
             await Room.findOneAndUpdate(
@@ -97,3 +90,12 @@ export const deleteReservation = async (req, res, next)=>{
     }
 }
 
+export const deleteReservationAfterPay = async (req, res, next)=>{
+    try{
+        await Reservation.findByIdAndDelete(req.params.id)
+        console.log('Here')
+        res.status(200).json('Reservation only has been delele.')
+    } catch (err) {
+        next(err)
+    }
+}

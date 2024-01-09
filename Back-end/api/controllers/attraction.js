@@ -1,7 +1,6 @@
 import Attraction from "../models/Attraction.js";
 
-export const createAttraction = async (req, res, next)=>{
-    console.log('Hello')
+export const createAttraction = async (req, res, next)=>{f
     const newAttraction = new Attraction(req.body)
     try {
         const savedAttraction = await newAttraction.save()

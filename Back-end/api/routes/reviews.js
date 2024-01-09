@@ -8,7 +8,7 @@ const router = express.Router()
 router.post('/:hotelId', verifyUser, createReview)
 
 //GET
-router.get('/:hotelId', verifyUser, getReviews)
+router.get('/:hotelId', getReviews)
 
 //DELETE
 router.delete('/:reviewId', verifyUser, deleteReview)

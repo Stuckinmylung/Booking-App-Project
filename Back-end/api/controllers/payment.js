@@ -27,3 +27,14 @@ export const getPayment = async (req, res, next)=>{
         next(err)
     }
 }
+
+export const createPayment = async (req, res, next)=>{
+    try {
+        const payment = new Payment(req.body)
+        payment.isPaid = true
+        const savedPayment = await payment.save()
+        res.status(200).json(savedPayment)
+    } catch (err) {
+        next(err)
+    }
+}

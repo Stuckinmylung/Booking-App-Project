@@ -1,5 +1,6 @@
 import Hotel from "../models/Hotel.js"
 import Room from "../models/Room.js"
+import diacritics from 'diacritics'
 
 export const createHotel = async (req, res, next)=>{
     const newHotel = new Hotel(req.body)
@@ -30,9 +31,12 @@ export const getHotel = async (req, res, next)=>{
 }
 
 export const getHotelsByConditions = async (req, res, next)=>{
+    const dates =  req.query.dates.split(',').map(String)
+    const options = req.query.options.split(',').map(Number)
+
     const getDatesInRange = (startDate, endDate)=>{
-        const start = new Date(startDate)
-        const end = new Date(endDate)
+        const start = new Date(Number(startDate))
+        const end = new Date(Number(endDate))
         const date = new Date(start.getTime())
         const list = []
         while (date <= end) {
@@ -41,15 +45,26 @@ export const getHotelsByConditions = async (req, res, next)=>{
         }
         return list
     }
-    const allDates = getDatesInRange(req.body.dates[0], req.body.dates[req.body.dates.length-1])
+    const allDates = getDatesInRange(dates[0], dates[dates.length-1])
+
     const isAvailable = (roomNumber)=>{
         const isFound = roomNumber.unavailableDates.some((date)=>allDates.includes(new Date(date).getTime()))
         return !isFound
     }
+    const normalizeCity = (city)=>{
+        city = diacritics.remove(city)
+        const words = city.split(' ')
+        const formattedWords = words.map((word) => {
+            const lowercaseWord = word.toLowerCase()
+            return lowercaseWord.charAt(0).toUpperCase() + lowercaseWord.slice(1)
+        })
+        const formattedCity = formattedWords.join(' ')
+        return formattedCity
+    }
     try {
         const hotels = await Hotel.find({ 
-            'city': req.body.city,
-            'cheapestPrice': { $gte: req.body.min, $lte: req.body.max },
+            'city': normalizeCity(req.query.city),
+            'cheapestPrice': { $gte: req.query.min, $lte: req.query.max },
         })
         const validHotels = []
         for (const hotel of hotels) {
@@ -59,9 +74,8 @@ export const getHotelsByConditions = async (req, res, next)=>{
                     const room = await Room.findById(roomId)
                     if (room && Array.isArray(room.roomNumbers)){
                         const validRoomNumbers = room.roomNumbers.filter((roomNumber) => isAvailable(roomNumber))
-                        const amountOfPeople = req.body.options[0] + Math.ceil(req.body.options[1]/2)
-                        console.log(validRoomNumbers.length)
-                        if (validRoomNumbers.length >= req.body.options[2] && room.maxPeople >= amountOfPeople) {
+                        const amountOfPeople = options[0] + Math.ceil(options[1]/2)
+                        if (validRoomNumbers.length >= options[2] && room.maxPeople >= amountOfPeople) {
                             validRooms.push(room.toObject())
                         }
                     }
@@ -73,7 +87,7 @@ export const getHotelsByConditions = async (req, res, next)=>{
                 }
             }
         }
-        res.status(200).json(validHotels)
+        res.status(200).json(validHotels) 
     } catch (err) {
         next(err);
     }
@@ -105,7 +119,6 @@ export const countByCity = async (req, res, next)=>{
 
 export const countByType = async (req, res, next)=>{
     try {
-
         const hotelCount = await Hotel.countDocuments({type:"hotel"})
         const apartmentCount = await Hotel.countDocuments({type:"apartment"})
         const resortCount = await Hotel.countDocuments({type:"resort"})

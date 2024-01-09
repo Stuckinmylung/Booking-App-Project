@@ -63,14 +63,39 @@ export const getRooms = async (req, res, next)=>{
     }
 }
 
-export const getRoomByRoomNumberId = async (roomNumberId, res, next)=>{
+export const getRoomByRoomNumberId = async (req, res, next)=>{
+    const roomNumberId = req.params.roomNumberId
     try {
         const room = await Room.findOne({ 'roomNumbers._id': roomNumberId })
+        res.status(200).json(room)
         return room;
     } catch (err) {
         next(err)
     }
 }
+
+export const getNumberByRoomNumberId = async (req, res) => {
+    try {
+      const roomNumberId = req.params.roomnumberid;
+  
+      const room = await Room.findOne({ 'roomNumbers._id': roomNumberId });
+  
+      if (!room) {
+        return res.status(404).json({ message: 'Room not found for the given room number.' });
+      }
+  
+      const roomNumber = room.roomNumbers.find(number => number._id.toString() === roomNumberId);
+  
+      if (!roomNumber) {
+        return res.status(404).json({ message: 'Room number not found.' });
+      }
+      res.json(roomNumber);
+      return roomNumber
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
 
 export const deleteRoom = async (req, res, next) => {
     const hotelId = req.params.hotelid;
