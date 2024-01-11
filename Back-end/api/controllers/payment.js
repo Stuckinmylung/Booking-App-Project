@@ -38,3 +38,34 @@ export const createPayment = async (req, res, next)=>{
         next(err)
     }
 }
+
+export const getPayments = async (req, res, next)=>{
+    try {
+        const payments = await Payment.find()
+        res.status(200).json(payments)
+    } catch(err) {
+        next(err)
+    }
+}
+
+export const getPaymentsByDate = async (req, res, next)=>{
+    try {
+        const timestamp = req.params.date;
+        const date = new Date(parseInt(timestamp) * 1000);
+
+        const startOfDate = new Date(date)
+        startOfDate.setUTCHours(0,0,0,0)
+        const endOfDate = new Date(date)
+        endOfDate.setUTCHours(23, 59, 59, 999)
+
+        const foundPayment = await Payment.find({
+            "createdAt": {
+                $gte: startOfDate,
+                $lte: endOfDate
+            }
+        })
+        res.status(200).json(foundPayment)
+    } catch (err){
+        next(err)
+    }
+}

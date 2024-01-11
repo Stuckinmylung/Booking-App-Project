@@ -93,8 +93,7 @@ export const deleteReservation = async (req, res, next)=>{
 export const deleteReservationAfterPay = async (req, res, next)=>{
     try{
         await Reservation.findByIdAndDelete(req.params.id)
-        console.log('Here')
-        res.status(200).json('Reservation only has been delele.')
+        res.status(200).json('Reservation has been deleted.')
     } catch (err) {
         next(err)
     }

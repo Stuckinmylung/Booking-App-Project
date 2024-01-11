@@ -33,10 +33,10 @@ app.use(express.json())
 
 app.use('/api/hotels', hotelsRoute);
 app.use('/api/auth', authRoute);
+app.use('/api/payments', paymentsRoute)
 app.use('/api/users', usersRoute);
 app.use('/api/rooms', roomsRoute);
 app.use('/api/reservations', reservationsRoute);
-app.use('/api/payments', paymentsRoute)
 app.use('/api/reviews', reviewsRoute)
 app.use('/api/attractions', attractionsRoute)
 

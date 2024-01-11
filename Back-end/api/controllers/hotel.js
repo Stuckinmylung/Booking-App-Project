@@ -34,23 +34,46 @@ export const getHotelsByConditions = async (req, res, next)=>{
     const dates =  req.query.dates.split(',').map(String)
     const options = req.query.options.split(',').map(Number)
 
-    const getDatesInRange = (startDate, endDate)=>{
-        const start = new Date(Number(startDate))
-        const end = new Date(Number(endDate))
-        const date = new Date(start.getTime())
-        const list = []
+    const getDatesInRange = (startDate, endDate) => {
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+    
+        const date = new Date(start.getTime());
+        const dates = [];
+    
         while (date <= end) {
-            list.push(new Date(date).getTime())
-            date.setDate(date.getDate() + 1)
+          dates.push({
+            year: date.getFullYear(),
+            month: date.getMonth() + 1,
+            day: date.getDate(),
+          });
+          date.setDate(date.getDate() + 1);
         }
-        return list
-    }
-    const allDates = getDatesInRange(dates[0], dates[dates.length-1])
+    
+        return dates;
+      };
+    const alldates = getDatesInRange(dates[0], dates[dates.length-1])
 
-    const isAvailable = (roomNumber)=>{
-        const isFound = roomNumber.unavailableDates.some((date)=>allDates.includes(new Date(date).getTime()))
-        return !isFound
-    }
+    const isAvailable = (roomNumber) => {
+        const isFound = roomNumber.unavailableDates.some((date) => {
+          const dateObj = new Date(date);
+          const dateWithoutTime = {
+            year: dateObj.getFullYear(),
+            month: dateObj.getMonth() + 1,
+            day: dateObj.getDate(),
+          };
+    
+          return alldates.some(
+            (d) =>
+              d.year === dateWithoutTime.year &&
+              d.month === dateWithoutTime.month &&
+              d.day === dateWithoutTime.day
+          );
+        });
+    
+        return !isFound;
+      };
+
     const normalizeCity = (city)=>{
         city = diacritics.remove(city)
         const words = city.split(' ')

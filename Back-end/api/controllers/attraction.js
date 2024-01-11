@@ -1,6 +1,6 @@
 import Attraction from "../models/Attraction.js";
 
-export const createAttraction = async (req, res, next)=>{f
+export const createAttraction = async (req, res, next)=>{ 
     const newAttraction = new Attraction(req.body)
     try {
         const savedAttraction = await newAttraction.save()
@@ -12,7 +12,7 @@ export const createAttraction = async (req, res, next)=>{f
 
 export const getAttractions = async (req, res, next)=>{
     try {
-        const attractions = await Attraction.find({ 'city': req.body.city })
+        const attractions = await Attraction.find({ 'city': req.query.city })
         res.status(200).json(attractions)
     } catch (err) {
         next(err)

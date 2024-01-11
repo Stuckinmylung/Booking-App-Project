@@ -31,7 +31,7 @@ export const updateRoom = async (req, res, next)=>{
 
 export const updateRoomAvailability = async (req, res, next) => {
     try {
-      await Room.updateOne(
+      const updatedRoom = await Room.updateOne(
         { "roomNumbers._id": req.params.id },
         {
           $push: {
