@@ -1,0 +1,99 @@
+:root {
+    --PrimaryColor: hsl(199, 100%, 33%);
+    --SecondaryColor: hwb(187 6% 20%);
+    --gradientColor: linear-gradient(to right,
+                                   hsl(187, 85%, 43%),
+                                   hsl(199, 69%, 20%));
+    --whiteColor: hsl(0, 0%, 100%);
+    --blackColor: hsl(201, 33%, 16%);
+    --textColor: hsl(240, 4%, 36%);
+    --whiteColorDeam: hsl(0, 0%, 93%);
+    --greyText: rgb(190, 190, 190);
+    --inputColor: rgb(239, 239, 239);
+    --bodyColor: rgb(240, 240, 246);
+    --cardBG: rgb(225, 225, 235);
+}
+
+.searchItems {
+    padding: 15px;
+
+    .searchContent {
+        display: flex;
+
+        .singleHotel {
+            border-radius: 20px;
+            box-shadow:  5px 5px 8px #696969,
+             -5px -5px 8px #ffffff;
+            overflow: hidden; 
+            transition: transform 0.2s ease-in-out;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+
+            img {
+                height: 100%;
+                width: 60%;
+                overflow: hidden;
+                object-fit: cover;
+            }
+    
+            .siDesc {
+                padding: 1rem;
+                display: grid;
+                width: 100%;
+                gap: 2px;
+            
+                .siTitle {
+                    font-size: 20px;
+                    color: var(--blackColor);
+                }
+
+                .siDistance {
+                    font-size: 15px;
+                }
+
+                .siTaxi {
+                    background-color: var(--PrimaryColor);
+                    color: white;
+                    width: max-content;
+                    padding: 3px;
+                    font-size: 15px;
+                    border-radius: 5px;
+                }
+
+                .siSubTitle {
+                    font-weight: bold;
+                    font-size: 15px;
+                }
+                
+                .siCancelOp {
+                    font-weight: bold;
+                    font-size: 15px;
+                    color: var(--PrimaryColor);
+                }
+
+                .siPrice {
+                    font-size: 20px;
+
+                    small {
+                        font-size: 15px;
+                    }
+                }
+                    
+                .siTaxOp {
+                    font-size: 15px;
+                    color: var(--PrimaryColor);
+                }    
+
+                .btn {
+                    position: relative;
+                    margin-top: 15px;
+                    left: 50%;
+                    font-weight: 500;
+                    color: var(--whiteColor);
+                }
+            }
+        }    
+    }
+}

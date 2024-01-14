@@ -1,0 +1,134 @@
+:root {
+    --PrimaryColor: hsl(199, 100%, 33%);
+    --SecondaryColor: hsl(187, 85%, 43%);
+    --gradientColor: linear-gradient(to right,
+            hsl(187, 85%, 43%),
+            hsl(199, 100%, 33%));
+    --whiteColor: hsl(0, 0%, 100%);
+    --blackColor: hsl(201, 33%, 16%);
+    --textColor: hsl(240, 4%, 36%);
+    --whiteColorDeam: hsl(0, 0%, 93%);
+    --greyText: rgb(190, 190, 190);
+    --inputColor: rgb(239, 239, 239);
+    --bodyColor: rgb(240, 240, 246);
+    --cardBG: rgb(225, 225, 235);
+    --cardHover: rgb(225, 225, 235);
+}
+
+.list {
+    display: flex;
+    width: 100%;
+
+    .listWrapper {
+        margin-top: 5%;
+        margin-bottom: 5%;
+
+        .listSearch {
+            padding: 20px;
+            z-index: 1;
+            position: sticky;
+            top: 15%;
+            bottom: 15%;
+            box-shadow: 14px 14px 51px #7d7d7d,
+                -14px -14px 51px #ffffff;
+
+            video {
+                position: absolute;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .listTitle {
+                font-size: 2.3rem;
+                color: var(--SecondaryColor);
+                z-index: 2;
+            }
+
+            .listsItem {
+                display: grid;
+                margin-bottom: 10px;
+
+                label {
+                    font-weight: bold;
+                    font-size: 20px;
+                    color: var(--whiteColor);
+                    z-index: 2;
+                }
+
+                input {
+                    height: 25px;
+                    border: none;
+                    border-radius: 5px;
+                    z-index: 2;
+                }
+
+                .dateSearch {
+                    height: 40px;
+                    padding: 5px;
+                    border-radius: 5px;
+                    background: var(--whiteColor);
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+                    z-index: 2;
+                }
+
+                .dateRange {
+                    position: absolute;
+                    z-index: 5;
+                    margin-top: 30%;
+                }
+
+                .lsOptions {
+                    padding: 5px;
+                    z-index: 2;
+
+                    .lsOptionItem {
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 10px;
+                        color: var(--whiteColor);
+                        font-size: 15px;
+
+                        .lsOptionText {
+                            background: transparent;
+                            color: var(--whiteColor);
+                            font-weight: bold;
+                        }
+
+                        .optionCounter {
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+
+                            .optionCounerButton {
+                                width: 25px;
+                                height: 20px;
+                                cursor: pointer;
+                                border: 1px solid lightcyan;
+                                border-radius: 2px;
+                            }
+                        }
+
+                        .lsOptionInput {
+                            width: 40%;
+                            border-radius: 7px;
+                        }
+                    }
+                }
+            }
+
+            .btn {
+                z-index: 2;
+                color: var(--whiteColor);
+                font-weight: bold;
+            }
+        }
+
+        .listResult {
+            display: grid;
+            width: auto;
+            margin-top: 5%;
+        }
+    }
+}

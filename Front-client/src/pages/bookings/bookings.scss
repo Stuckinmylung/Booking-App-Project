@@ -1,0 +1,54 @@
+:root {
+  --PrimaryColor: hsl(199, 100%, 33%);
+  --SecondaryColor: hwb(187 6% 20%);
+  --gradientColor: linear-gradient(to right,
+      hsl(187, 85%, 43%),
+      hsl(199, 69%, 20%));
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl(201, 33%, 16%);
+  --textColor: hsl(240, 4%, 36%);
+  --whiteColorDeam: hsl(0, 0%, 93%);
+  --greyText: rgb(190, 190, 190);
+  --inputColor: rgb(239, 239, 239);
+  --bodyColor: rgb(240, 240, 246);
+  --cardBG: rgb(225, 225, 235);
+}
+
+.bookings {
+
+  .Bcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+
+    h1 {
+      margin-top: 80px;
+      margin-bottom: 30px;
+      color: var(--PrimaryColor);
+    }
+
+    .Bwrapper {
+      width: 100%;
+      display: grid;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+
+      .totalPrice {
+        display: flex;
+        margin-top: 30px;
+
+        h2 {
+          color: var(--PrimaryColor);
+          margin-right: 50px;
+        }
+
+        .btn {
+          color: white;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

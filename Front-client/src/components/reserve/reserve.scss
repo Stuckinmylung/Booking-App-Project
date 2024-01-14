@@ -1,0 +1,104 @@
+:root {
+  --PrimaryColor: hsl(199, 100%, 33%);
+  --SecondaryColor: hwb(187 6% 20%);
+  --gradientColor: linear-gradient(to right,
+      hsl(187, 85%, 43%),
+      hsl(199, 71%, 41%));
+  --backColor: linear-gradient(to right,
+      hsl(180, 33%, 99%),
+      hsl(203, 19%, 83%));
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl(201, 33%, 16%);
+  --textColor: hsl(240, 4%, 36%);
+  --whiteColorDeam: hsl(0, 0%, 93%);
+  --greyText: rgb(190, 190, 190);
+  --inputColor: rgb(208, 79, 79);
+  --bodyColor: rgb(240, 240, 246);
+  --cardBG: rgb(225, 225, 235);
+}
+
+.reserve {
+  width: 100%;
+  position: fixed;
+  top: 12%;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+
+  .reContainer {
+    background: white;
+    padding: 40px;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 5px 5px 8px #696969,
+      -5px -5px 8px #ffffff;
+
+    .reClose {
+      position: absolute;
+      font-size: 25px;
+      color: darkred;
+      right: 0;
+      top: 0;
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    span {
+      font-size: 25px;
+      font-weight: bold;
+      color: var(--PrimaryColor);
+    }
+
+    .reItem {
+      display: flex;
+      gap: 50px;
+      padding: 20px;
+      margin-top: 10px;
+      border: 1px solid var(--blackColor);
+
+      .reItemInfo {
+        width: 50%;
+
+        .reTitle {
+          font-size: 20px;
+          color: var(--SecondaryColor);
+        }
+
+        .reDesc {
+          color: black;
+          font-size: 15px;
+        }
+
+        .reMax {
+          font-size: 15px;
+        }
+
+        .rePrice {
+          font-weight: bold;
+        }
+      }
+
+      .reSelecRooms {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        font-weight: bold;
+        color: var(--blackColor);
+      }
+    }
+  }
+
+  .btn {
+    margin-top: 5%;
+    margin-left: 45%;
+    color: var(--whiteColor);
+    font-weight: bold;
+  }
+}

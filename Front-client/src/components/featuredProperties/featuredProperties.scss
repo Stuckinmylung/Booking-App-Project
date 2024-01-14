@@ -1,0 +1,144 @@
+:root {
+    --PrimaryColor: hsl(199, 100%, 33%);
+    --SecondaryColor: hwb(187 6% 20%);
+    --gradientColor: linear-gradient(to right,
+            hsl(187, 85%, 43%),
+            hsl(199, 69%, 20%));
+    --whiteColor: hsl(0, 0%, 100%);
+    --blackColor: hsl(201, 33%, 16%);
+    --textColor: hsl(240, 4%, 36%);
+    --whiteColorDeam: hsl(0, 0%, 93%);
+    --greyText: rgb(190, 190, 190);
+    --inputColor: rgb(239, 239, 239);
+    --bodyColor: rgb(240, 240, 246);
+    --cardBG: rgb(225, 225, 235);
+}
+
+.fp {
+    position: relative;
+    width: 100%;
+
+    .fpSecTitle {
+        margin-top: -5%;
+
+        .fpTitle {
+            position: relative;
+            width: max-content;
+            color: var(--textColor);
+            background: var(--greyText);
+            margin: 1rem 0;
+            box-shadow: 5px 5px 8px #696969,
+                -5px -5px 8px #ffffff;
+            z-index: -2;
+
+
+            &::after {
+                position: absolute;
+                content: '';
+                background: var(--SecondaryColor);
+                height: 33px;
+                width: 100px;
+                right: 0;
+                bottom: 0;
+                z-index: -1;
+            }
+        }
+    }
+
+    .fpSecContent {
+        margin-top: 20px;
+        justify-content: center;
+        height: 800px;
+        gap: 1.5rem;
+
+        .singleProperties {
+            height: 100%;
+            display: flex;
+            row-gap: 10px;
+            border-radius: 10px;
+            align-items: center;
+            box-shadow: 5px 5px 8px #696969,
+                -5px -5px 8px #ffffff;
+            overflow: hidden;
+            transition: transform 0.2s ease-in-out;
+
+            &:hover {
+                transform: scale(1.1);
+
+                img {
+                    transform: scale(1.1);
+                }
+            }
+
+            .fpImgae {
+                height: 100%;
+                width: 400px;
+                overflow: hidden;
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                    transition: 0.5s ease-in-out;
+                }
+            }
+
+            .fpInfo {
+                padding: 1.5rem;
+                display: grid;
+
+                .fpName {
+                    color: var(--PrimaryColor);
+                    font-size: 1.2rem;
+                }
+
+                .fpCity {
+                    color: var(--blackColor);
+                    font-size: 15px;
+                }
+
+                .fpPrice {
+                    font-size: 13px;
+                }
+
+                .fpDistance {
+                    font-size: 13px;
+                }
+
+                .btn {
+                    width: max-content;
+                    margin-top: 20px;
+                    margin-left: 250px;
+                    font-weight: 600;
+                    justify-content: space-between;
+                    gap: 10px;
+                    color: var(--whiteColor);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .fpTitle {
+        font-size: 1.5rem;
+
+        &::after {
+            width: 123px !important;
+        }
+    }
+
+    .fpSecContent {
+        .singleProperties {
+            height: auto;
+        }
+    }
+}
+
+@media screen and (min-width: 840px) {
+    .fpSecContent {
+        .singleProperties {
+            height: auto;
+        }
+    }
+}

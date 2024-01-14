@@ -1,0 +1,167 @@
+:root {
+    --PrimaryColor: hsl(199, 100%, 33%);
+    --SecondaryColor: hwb(187 6% 20%);
+    --gradientColor: linear-gradient(to right,
+            hsl(187, 85%, 43%),
+            hsl(199, 71%, 41%));
+    --whiteColor: hsl(0, 0%, 100%);
+    --blackColor: hsl(201, 33%, 16%);
+    --textColor: hsl(240, 4%, 36%);
+    --whiteColorDeam: hsl(0, 0%, 93%);
+    --greyText: rgb(190, 190, 190);
+    --bodyColor: rgb(240, 240, 246);
+    --cardBG: rgb(225, 225, 235);
+}
+
+
+.features {
+    width: 100%;
+    z-index: 0;
+
+    .ftSecTitle {
+        .ftTitle {
+            position: relative;
+            width: max-content;
+            color: var(--whiteColor);
+            background: var(--greyText);
+            margin: 1rem 0;
+            box-shadow: 5px 5px 8px #696969,
+                -5px -5px 8px #ffffff;
+            z-index: -2;
+
+
+            &::after {
+                position: absolute;
+                content: '';
+                background: var(--blackColor);
+                height: 33px;
+                width: 100px;
+                right: 0;
+                z-index: -1;
+            }
+        }
+    }
+
+    .ftSecContent {
+        margin-top: 30px;
+        justify-content: center;
+        height: 450px;
+        gap: 1.5rem;
+
+        .singleDestination {
+            height: 100%;
+            display: grid;
+            row-gap: 10px;
+            border-radius: 10px;
+            align-items: center;
+            box-shadow: 5px 5px 8px #696969,
+                -5px -5px 8px #ffffff;
+            overflow: hidden;
+            transition: 0.5s ease-in-out;
+            cursor: pointer;
+
+            .imageDiv {
+                height: 100%;
+                width: 100%;
+                overflow: hidden;
+
+                img {
+                    object-fit: cover;
+                    height: 100%;
+                    transition: 0.5s ease-in-out;
+                }
+            }
+
+            .cardInfo {
+                display: none;
+            }
+
+            &:hover {
+                transform: scale(1.1); 
+
+                img {
+                    display: none;
+                }
+
+                .cardInfo {
+                    display: block;
+                    padding: 1rem;
+    
+                    .destTitle {
+                        margin-top: -30px;
+                        color: var(--PrimaryColor);
+                        font-size: 1.2rem;
+                        gap: 5px;
+    
+                        span {
+                            position: relative;
+                            text-align: center;
+                            align-items: center;
+                            background: var(--textColor);
+                            color: var(--whiteColor);
+                            border-radius: 1rem;
+                            padding: 1px 10px;
+                            font-size: 13px;
+                            margin-left: 1%;
+                        }
+                    }
+    
+                    .desc {
+                        border-top: 1px solid var(--greyText);
+                        border-bottom: 1px solid var(--greyText);
+                        margin: 0.5rem 0;
+                        font-size: 14px;
+                        font-weight: 500;
+                        padding: 5px;
+                    }
+    
+                    .btn {
+                        margin-top: .5rem;
+                        margin-left: 55%;
+                        font-weight: 600;
+                        color: var(--whiteColor);
+                        gap: 10px;
+                    }
+                }
+            }
+
+            
+        }
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .ftTitle {
+        font-size: 1.5rem;
+
+        &::after {
+            width: 155px !important;
+        }
+    }
+
+    .ftSecContent {
+        grid-template-columns: repeat(2, 1fr);
+
+        .singleDestination {
+            height: auto;
+
+            .desc {
+                display: none;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 840px) {
+    .ftSecContent {
+        grid-template-columns: repeat(3, 1fr);
+
+        .singleDestination {
+            height: auto;
+
+            .desc {
+                display: flex;
+            }
+        }
+    }
+}

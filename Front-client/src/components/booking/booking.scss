@@ -1,0 +1,66 @@
+:root {
+  --PrimaryColor: hsl(199, 100%, 33%);
+  --SecondaryColor: hwb(187 6% 20%);
+  --gradientColor: linear-gradient(to right,
+      hsl(187, 85%, 43%),
+      hsl(199, 69%, 20%));
+  --cancelBut: linear-gradient(to right,
+      hsl(0, 81%, 49%),
+      hsl(0, 94%, 20%));
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl(201, 33%, 16%);
+  --textColor: hsl(240, 4%, 36%);
+  --whiteColorDeam: hsl(0, 0%, 93%);
+  --greyText: rgb(190, 190, 190);
+  --inputColor: rgb(239, 239, 239);
+  --bodyColor: rgb(240, 240, 246);
+  --cardBG: rgb(225, 225, 235);
+}
+
+.booking {
+  width: 800px;
+  background: var(--cardBG);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 5px 5px 8px #696969,
+    -5px -5px 8px #ffffff;
+
+  .bookingContainer {
+    display: flex;
+    align-items: center;
+    height: 200px;
+    gap: 30px;
+
+    .bookingImg {
+      height: 100%;
+
+      img {
+        width: 350px;
+        height: 100%;
+      }
+    }
+
+    .bookingInfo {
+      display: flex;
+      flex-direction: column;
+
+      .desc {
+        gap: 30px;
+
+        h3 {
+          color: var(--PrimaryColor);
+        }
+      }
+
+      .btn {
+        width: max-content;
+        margin-top: 20px;
+        margin-left: 250px;
+        font-weight: bold;
+        gap: 10px;
+        color: var(--whiteColor);
+        background: var(--cancelBut);
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+:root {
+    --PrimaryColor: hsl(199, 100%, 33%);
+    --SecondaryColor: hwb(187 6% 20%);
+    --gradientColor: linear-gradient(to right,
+            hsl(187, 85%, 43%),
+            hsl(199, 71%, 41%));
+    --whiteColor: hsl(0, 0%, 100%);
+    --blackColor: hsl(201, 33%, 16%);
+    --textColor: hsl(240, 4%, 36%);
+    --whiteColorDeam: hsl(0, 0%, 93%);
+    --greyText: rgb(190, 190, 190);
+    --bodyColor: rgb(240, 240, 246);
+    --cardBG: rgb(225, 225, 235);
+}
+
+.attractions {
+    margin-top: 50px;
+    width: 100%;
+
+    h1 {
+        box-shadow: 5px 5px 8px #696969,
+            -5px -5px 8px #ffffff;
+        width: max-content;
+        border-radius: 10px;
+        background: var(--PrimaryColor);
+        padding: 0 10px;
+        color: var(--whiteColor);
+    }
+
+    .attractionCotainer {
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap; 
+        gap: 10px;
+        margin-top: 20px;
+
+        .singleAttraction {
+            padding: 10px;
+            border: 1px solid var(--blackColor); 
+            display: flex;
+            flex-direction: column;
+
+            h2 {
+                font-size: 17px;
+                color: var(--blackColor)
+            }
+
+            span {
+                padding: 0 10px;
+                color: var(--blackColor);
+                transition: .3s ease-in-out;
+                cursor: default;
+                font-size: 13px;
+
+                &:hover {
+                    color: var(--SecondaryColor);
+                    transform: translateX(7px);
+                }
+            }
+
+        }
+    }
+}

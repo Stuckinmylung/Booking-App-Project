@@ -1,0 +1,166 @@
+@import "~slick-carousel/slick/slick";
+
+:root {
+    --PrimaryColor: hsl(199, 100%, 33%);
+    --SecondaryColor: hsl(187, 85%, 43%);
+    --back: linear-gradient(to right,
+            hsl(190, 67%, 92%),
+            hsl(198, 56%, 92%));
+    --whiteColor: hsl(0, 0%, 100%);
+    --blackColor: hsl(201, 33%, 16%);
+    --textColor: hsl(240, 4%, 36%);
+    --whiteColorDeam: hsl(0, 0%, 93%);
+    --greyText: rgb(190, 190, 190);
+    --inputColor: rgb(239, 239, 239);
+    --bodyColor: rgb(240, 240, 246);
+    --cardBG: rgb(225, 225, 235);
+    --cardHover: rgb(225, 225, 235);
+}
+
+.hotelReviews {
+    display: grid;
+    margin-top: 50px;
+
+    .showContainer {
+        overflow: hidden;
+
+        h1 {
+            box-shadow: 5px 5px 8px #696969,
+                -5px -5px 8px #ffffff;
+            width: max-content;
+            border-radius: 10px;
+            background: var(--PrimaryColor);
+            padding: 0 10px;
+            color: var(--whiteColor);
+        }
+
+        .showReview {
+            padding: 20px;
+            display: flex;
+
+            .slick-slider {
+                position: relative;
+                width: 100%;
+                z-index: 1;
+
+                .slick-dots {
+                    position: absolute;
+                    bottom: 0;
+                    justify-content: center;
+                }
+
+                .singleReview {
+                    height: 200px;
+                    display: flex;
+                    flex-direction: column;
+                    background: var(--bodyColor);
+                    overflow-y: auto;
+                    row-gap: 5px;
+                    cursor: pointer;
+                    padding: 20px;
+                    box-shadow: 5px 5px 8px #696969,
+                        -5px -5px 8px #ffffff;
+
+                    .rating {
+                        border-bottom: 1px solid var(--greyText);
+
+                        .star {
+                            margin-right: 5px;
+                            color: var(--PrimaryColor);
+                        }
+                    }
+
+                    .message {
+                        color: var(--blackColor);
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+    }
+
+    .addContainer {
+        display: grid;
+        margin-top: 5%;
+
+        h1 {
+            box-shadow: 5px 5px 8px #696969,
+                -5px -5px 8px #ffffff;
+            width: max-content;
+            border-radius: 10px;
+            background: var(--PrimaryColor);
+            padding: 0 10px;
+            color: var(--whiteColor);
+        }
+
+        .addReview {
+            gap: 40px;
+            padding: 20px;
+
+            textarea {
+                border-radius: 10px;
+                height: 130px;
+                width: 80%;
+                resize: none;
+                background: var(--bodyColor);
+                padding: 10px;
+                box-shadow: 5px 5px 8px #696969,
+                    -5px -5px 8px #ffffff;
+            }
+
+            .addWrapper {
+                gap: 20px;
+
+                .ratingSelect {
+                    display: flex;
+                    border-radius: 20px;
+                    background: var(--back);
+                    padding: 10px;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    box-shadow: 5px 5px 8px #696969,
+                        -5px -5px 8px #ffffff;
+
+                    .text {
+                        padding: 5px;
+                        font-weight: bold;
+                        color: var(--PrimaryColor);
+                    }
+
+                    .star-rating {
+                        width: max-content;
+
+                        button {
+                            background: transparent;
+                            border: none;
+                            outline: none;
+                            cursor: pointer;
+                            font-size: 20px;
+
+                            .star {
+                                padding: 5px;
+                            }
+                        }
+
+                        .on {
+                            color: var(--PrimaryColor);
+                        }
+
+                        .off {
+                            color: lightblue;
+                        }
+                    }
+                }
+
+                .btn {
+                    color: var(--whiteColor);
+                    font-weight: bold;
+                    box-shadow: 5px 5px 8px #696969,
+                        -5px -5px 8px #ffffff;
+                }
+            }
+        }
+
+    }
+}
