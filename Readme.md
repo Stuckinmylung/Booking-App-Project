@@ -2,7 +2,8 @@
 ### Overview
 Welcome to the Booking App project! This application is designed to facilitate the booking of various services, such as hotel rooms, flights, events, or any other type of reservation. It provides a user-friendly interface for customers to browse available options, make bookings, and manage their reservations.
 
-![alt text](https://github.com/[nghoaibao03]/[Booking-App-Project]/blob/[main]/Report/MainPage.png?raw=true)
+![Report](MainPage.png)
+
 
 ### Features
 User Authentication: Secure user authentication system to ensure the privacy and security of user information.
