@@ -11,8 +11,8 @@ User Profiles: Users can create and manage their profiles, including preferences
 Admin Panel: An admin panel for managing services, user accounts, and gaining insights into the system.
 
 ### Technologies Used
-Frontend: HTML, CSS, JavaScript (React.js)
-Backend: Node.js, Express.js
-Database: MongoDB
-Authentication: JSON Web Tokens (JWT)
-Payment Processing: Stripe (or any other payment gateway of your choice)
+- Frontend: HTML, CSS, JavaScript (React.js)
+- Backend: Node.js, Express.js
+- Database: MongoDB
+- Authentication: JSON Web Tokens (JWT)
+- Payment Processing: Stripe (or any other payment gateway of your choice)
